@@ -1,0 +1,170 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Replaced all oklch colors with RGB equivalents for PDF export compatibility */
+:root {
+  --background: rgb(251, 251, 253);
+  --foreground: rgb(33, 36, 43);
+  --card: rgb(255, 255, 255);
+  --card-foreground: rgb(33, 36, 43);
+  --popover: rgb(255, 255, 255);
+  --popover-foreground: rgb(33, 36, 43);
+  --primary: rgb(43, 82, 190);
+  --primary-foreground: rgb(251, 251, 253);
+  --secondary: rgb(245, 245, 248);
+  --secondary-foreground: rgb(54, 56, 66);
+  --muted: rgb(245, 245, 248);
+  --muted-foreground: rgb(108, 115, 127);
+  --accent: rgb(255, 167, 38);
+  --accent-foreground: rgb(33, 36, 43);
+  --destructive: rgb(220, 69, 51);
+  --destructive-foreground: rgb(255, 255, 255);
+  --border: rgb(231, 232, 238);
+  --input: rgb(231, 232, 238);
+  --ring: rgb(43, 82, 190);
+  --chart-1: rgb(87, 110, 220);
+  --chart-2: rgb(255, 167, 38);
+  --chart-3: rgb(52, 168, 83);
+  --chart-4: rgb(76, 140, 218);
+  --chart-5: rgb(128, 128, 200);
+  --radius: 0.5rem;
+  --sidebar: rgb(38, 41, 49);
+  --sidebar-foreground: rgb(240, 240, 245);
+  --sidebar-primary: rgb(87, 110, 220);
+  --sidebar-primary-foreground: rgb(255, 255, 255);
+  --sidebar-accent: rgb(54, 56, 66);
+  --sidebar-accent-foreground: rgb(240, 240, 245);
+  --sidebar-border: rgb(63, 66, 77);
+  --sidebar-ring: rgb(43, 82, 190);
+}
+
+.dark {
+  --background: rgb(28, 30, 37);
+  --foreground: rgb(245, 245, 248);
+  --card: rgb(38, 41, 49);
+  --card-foreground: rgb(245, 245, 248);
+  --popover: rgb(38, 41, 49);
+  --popover-foreground: rgb(245, 245, 248);
+  --primary: rgb(87, 130, 255);
+  --primary-foreground: rgb(26, 28, 34);
+  --secondary: rgb(49, 52, 61);
+  --secondary-foreground: rgb(245, 245, 248);
+  --muted: rgb(49, 52, 61);
+  --muted-foreground: rgb(160, 165, 180);
+  --accent: rgb(255, 180, 50);
+  --accent-foreground: rgb(26, 28, 34);
+  --destructive: rgb(200, 60, 40);
+  --destructive-foreground: rgb(245, 245, 248);
+  --border: rgb(63, 66, 77);
+  --input: rgb(49, 52, 61);
+  --ring: rgb(87, 130, 255);
+  --chart-1: rgb(87, 130, 255);
+  --chart-2: rgb(255, 180, 50);
+  --chart-3: rgb(70, 200, 110);
+  --chart-4: rgb(100, 160, 240);
+  --chart-5: rgb(150, 150, 220);
+  --sidebar: rgb(26, 28, 34);
+  --sidebar-foreground: rgb(240, 240, 245);
+  --sidebar-primary: rgb(87, 130, 255);
+  --sidebar-primary-foreground: rgb(255, 255, 255);
+  --sidebar-accent: rgb(49, 52, 61);
+  --sidebar-accent-foreground: rgb(240, 240, 245);
+  --sidebar-border: rgb(58, 61, 70);
+  --sidebar-ring: rgb(87, 130, 255);
+}
+
+@theme inline {
+  --font-sans: "Inter", "Inter Fallback", system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Print styles for 8.5x11 pages */
+@media print {
+  @page {
+    size: 8.5in 11in;
+    margin: 0;
+  }
+
+  .print-page {
+    width: 8.5in;
+    height: 11in;
+    page-break-after: always;
+    page-break-inside: avoid;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Editor canvas scaling */
+.editor-canvas {
+  transform-origin: top left;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
